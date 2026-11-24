@@ -158,6 +158,12 @@ python -m unittest discover tests -v
 CI:每次 push / PR,由 GitHub Actions 在 Python 3.10 / 3.11 / 3.12 上自动跑同一组测试,
 结果见仓库顶部的 `test` 徽章。
 
+## 作者
+
+- 邮箱:[wushiyi105@gmail.com](mailto:wushiyi105@gmail.com)
+- 电话:18384198104
+- GitHub:[@wushiyi105-jpg](https://github.com/wushiyi105-jpg)
+
 ## License
 
 [MIT](./LICENSE)

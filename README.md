@@ -1,12 +1,17 @@
 # 食光 ShiGuang · 智能菜谱 Agent
 
+[![test](https://github.com/wushiyi105-jpg/smartcook/actions/workflows/test.yml/badge.svg)](https://github.com/wushiyi105-jpg/smartcook/actions/workflows/test.yml)
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)]()
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![零第三方依赖](https://img.shields.io/badge/dependencies-零-2ea44f)]()
+
 > 告诉它你手边有什么食材,大模型帮你决定「做什么、怎么做、缺什么能换、能不能吃」。
 
 一个**生活方向**的智能体项目:输入自然语言食材清单,运行时由大模型完成
 **理解 → 识别 → 匹配 → 生成 → 判断**的完整链路,给出可做的菜、完整做法、
 缺失食材的替代方案、以及忌口/过敏判断。
 
-- 🐍 零第三方依赖,Python 3.8+ 标准库即可运行
+- 🐍 零第三方依赖,Python 3.10+ 标准库即可运行
 - 🖥 双入口:**CLI**(命令行)+ **Web**(自带网页界面)
 - 🧠 模型优先,离线演示模式兜底(无 key 也能跑通全流程)
 - 🔌 兼容任意 OpenAI 风格接口:DeepSeek / OpenAI / 本地 Ollama / 通义 / 月之暗面…
@@ -135,17 +140,23 @@ smartcook/
 │   ├── cli.py        # 命令行入口
 │   ├── web.py        # Web 界面(零依赖 http.server + JSON API)
 │   └── __main__.py   # python -m smartcook
-├── data/seed_recipes.json   # 20 道内置家常菜
-├── tests/test_smartcook.py  # 离线路径单元测试
+├── .github/workflows/test.yml   # CI:每次 push/PR 自动跑单元测试
+├── data/seed_recipes.json       # 20 道内置家常菜
+├── tests/test_smartcook.py      # 离线路径单元测试
 ├── .env.example             # 配置模板
 └── README.md
 ```
 
 ## 测试
 
+本地:
+
 ```bash
 python -m unittest discover tests -v
 ```
+
+CI:每次 push / PR,由 GitHub Actions 在 Python 3.10 / 3.11 / 3.12 上自动跑同一组测试,
+结果见仓库顶部的 `test` 徽章。
 
 ## License
 

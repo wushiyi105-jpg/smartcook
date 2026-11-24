@@ -130,7 +130,7 @@ async function post(path, body){
   const r = await fetch(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
   return r.json();
 }
-function btnLoading(btn,on){ btn.disabled=on; btn.innerHTML=on?'<span class="spin"></span>':' '+btn.dataset.label; }
+function btnLoading(btn,on){ btn.disabled=on; if(on){ btn.dataset.label=btn.dataset.label||btn.textContent.trim(); btn.innerHTML='<span class="spin"></span>'; } else { btn.innerHTML=btn.dataset.label||btn.textContent; } }
 
 function renderIng(i){ return typeof i==='object' ? esc(i.name)+(i.amount?' '+esc(i.amount):'') : esc(i); }
 

@@ -1,6 +1,6 @@
 # 食光 ShiGuang · 智能菜谱 Agent
 
-[![test](https://github.com/wushiyi105-jpg/smartcook/actions/workflows/test.yml/badge.svg)](https://github.com/wushiyi105-jpg/smartcook/actions/workflows/test.yml)
+[![test](https://github.com/wushiyi105-jpg/smartcook/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/smartcook/actions)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)]()
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 

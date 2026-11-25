@@ -132,6 +132,15 @@ def chat(
             raise LLMError(f"模型返回格式异常: {body[:300]}") from e
 
         content = (msg.get("content") or "").strip()
+        finish = ""
+        try:
+            finish = str(data["choices"][0].get("finish_reason") or "")
+        except (KeyError, IndexError, TypeError):
+            pass
+        if content and finish == "length" and payload["max_tokens"] < 8000:
+            # 输出被 max_tokens 截断:预算翻倍再试,别把半截 JSON 当结果
+            payload["max_tokens"] = min(8000, payload["max_tokens"] * 2)
+            continue
         if content:
             return content
         # content 为空:推理模型偶发,重试一次

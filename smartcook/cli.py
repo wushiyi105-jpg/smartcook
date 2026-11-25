@@ -11,7 +11,7 @@ from . import db as dbmod
 from .llm import LLMError
 
 MOCK_BANNER = (
-    "⚠️  当前为离线演示模式(未配置 LLM_API_KEY),结果由内置规则生成。\n"
+    "⚠️  当前为离线模式(未配置 LLM_API_KEY),结果由内置规则生成。\n"
     "   在 .env 填入 LLM_API_KEY 后,理解/识别/生成/判断将由大模型完成。\n"
 )
 
@@ -191,7 +191,7 @@ def build_parser() -> argparse.ArgumentParser:
         description="食光 · 智能菜谱 Agent:输入食材,让大模型帮你决定做什么、怎么做。",
     )
     p.add_argument("--version", action="version", version=f"smartcook {__version__}")
-    p.add_argument("--mock", action="store_true", help="强制离线演示模式(不调用模型)")
+    p.add_argument("--mock", action="store_true", help="强制离线模式(不调用模型)")
     p.add_argument("--json", action="store_true", help="以 JSON 输出原始结果")
     p.add_argument("--model", help="覆盖 LLM_MODEL")
     p.add_argument("--base-url", help="覆盖 LLM_BASE_URL")
@@ -240,7 +240,7 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv=None):
     args = build_parser().parse_args(argv)
 
-    # 未配置 key 且未显式 --mock 时,提示进入离线演示模式
+    # 未配置 key 且未显式 --mock 时,提示进入离线模式
     if not args.mock and args.command not in ("inventory", "recipes"):
         if not llm.config_from_args(args).get("api_key"):
             print(MOCK_BANNER, file=sys.stderr)

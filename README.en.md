@@ -36,7 +36,7 @@ python -m smartcook suggest 家里有番茄 鸡蛋 青椒 和一点肉末
 
 It talks to DeepSeek by default (the cheapest, `deepseek-flash`), creates the database on first run, and ships 20 home-style dishes.
 > **⚠️ The project carries no API key of its own — put in your own** (`.env` is already gitignored and never committed).
-With no key configured it falls into offline demo mode (a built-in rule engine), and the full flow still works.
+With no key configured it falls into offline mode (a built-in rule engine), and the full flow still works.
 
 ## 📖 Command reference
 
@@ -66,7 +66,7 @@ python -m smartcook web --port 8000
 
 # global options
 python -m smartcook --json swap 香醋        # raw JSON output
-python -m smartcook --mock suggest ...      # force offline demo (no model call)
+python -m smartcook --mock suggest ...      # force offline mode (no model call)
 ```
 
 ## 🔌 Model backends
@@ -124,7 +124,7 @@ smartcook/
 ├── smartcook/
 │   ├── agent.py      # core orchestration: model path + offline fallback
 │   ├── llm.py        # LLM client (OpenAI-style API + .env loading + empty-response retry)
-│   ├── mock.py       # offline rule engine (demo / tests only)
+│   ├── mock.py       # offline rule engine (fallback / tests)
 │   ├── db.py         # SQLite persistence layer (thread safe)
 │   ├── recipes.py    # built-in recipe loading
 │   ├── cli.py        # command line entry

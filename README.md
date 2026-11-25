@@ -36,7 +36,7 @@ python -m smartcook suggest 家里有番茄 鸡蛋 青椒 和一点肉末
 
 默认对接 DeepSeek(最便宜的 `deepseek-flash`),首次运行自动建库并内置 20 道家常菜。
 > **⚠️ 项目不自带任何 API key,请填入你自己的 key**(`.env` 已 gitignore,不会提交)。
-未配置 key 时自动进入离线演示模式(内置规则引擎兜底),也能跑通全流程。
+未配置 key 时自动进入离线模式(内置规则引擎兜底),也能跑通全流程。
 
 ## 📖 命令参考
 
@@ -66,7 +66,7 @@ python -m smartcook web --port 8000
 
 # 全局选项
 python -m smartcook --json swap 香醋        # 输出原始 JSON
-python -m smartcook --mock suggest ...      # 强制离线演示(不调用模型)
+python -m smartcook --mock suggest ...      # 强制离线模式(不调用模型)
 ```
 
 ## 🔌 模型接入
@@ -124,7 +124,7 @@ smartcook/
 ├── smartcook/
 │   ├── agent.py      # 核心编排:模型主路径 + 离线回退
 │   ├── llm.py        # LLM 客户端(OpenAI 风格接口 + .env 加载 + 空响应重试)
-│   ├── mock.py       # 离线规则引擎(仅演示/测试)
+│   ├── mock.py       # 离线规则引擎(兜底/测试)
 │   ├── db.py         # SQLite 持久层(线程安全)
 │   ├── recipes.py    # 内置菜谱加载
 │   ├── cli.py        # 命令行入口

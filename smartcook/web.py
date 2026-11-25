@@ -200,7 +200,7 @@ $('#btn-diet').onclick=async()=>{
 
 fetch('/api/status').then(r=>r.json()).then(s=>{
   const b=$('#status-badge');
-  if(s.mock){ b.textContent='离线演示模式'; b.style.background='#fee2e2'; b.style.color='#b91c1c'; }
+  if(s.mock){ b.textContent='离线模式'; b.style.background='#fee2e2'; b.style.color='#b91c1c'; }
   else{ b.textContent=s.model||'模型已连接'; b.style.background='#dcfce7'; b.style.color='#15803d'; }
 }).catch(()=>{});
 </script>
@@ -280,7 +280,7 @@ def serve(host: str = "127.0.0.1", port: int = 8000, db_path: str | None = None,
 
     handler = _make_handler(db, cfg, force_mock)
     httpd = ThreadingHTTPServer((host, port), handler)
-    mode = "离线演示模式(未配置 key)" if (force_mock or not cfg.get("api_key")) else f"模型:{cfg.get('model')}"
+    mode = "离线模式(未配置 key)" if (force_mock or not cfg.get("api_key")) else f"模型:{cfg.get('model')}"
     print(f"🍳 食光已启动:http://{host}:{port}  [{mode}]")
     print("   按 Ctrl+C 停止")
     try:

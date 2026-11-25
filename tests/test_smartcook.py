@@ -7,7 +7,8 @@ import unittest
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from smartcook import agent, db as dbmod, llm, mock, recipes  # noqa: E402
+from smartcook import agent, llm, mock, recipes
+from smartcook import db as dbmod
 
 
 class TestLLM(unittest.TestCase):

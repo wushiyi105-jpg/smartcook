@@ -1,8 +1,6 @@
 # 食光 ShiGuang · 智能菜谱 Agent
 
-[![test](https://github.com/wushiyi105-jpg/smartcook/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/smartcook/actions)
-[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)]()
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![test](https://github.com/wushiyi105-jpg/smartcook/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/smartcook/actions) [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)]() [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE) [![codecov](https://codecov.io/gh/wushiyi105-jpg/smartcook/branch/main/graph/badge.svg)](https://codecov.io/gh/wushiyi105-jpg/smartcook)
 
 ![demo](assets/demo.gif)
 
@@ -100,6 +98,24 @@ python -m smartcook --mock suggest ...      # 强制离线演示(不调用模型
 ```
 
 其余能力:`cook`(生成做法)、`swap`(判断替代)、`diet`(判断忌口)。
+
+### 数据流
+
+一条数据在这几个模块之间怎么走：
+
+```mermaid
+flowchart LR
+    A[手边食材] --> B[db.py<br/>读家庭库存]
+    B --> C[agent.py<br/>模型抽出食材清单]
+    C --> D[recipes.py + db.py<br/>取菜谱库候选]
+    D --> E[agent.py<br/>模型决定做什么 · 缺什么能换]
+    E --> F{有没有可用的 key}
+    F -->|没有| G[mock.py<br/>确定性规则回退]
+    F -->|有| E
+    G --> H[db.py 落库]
+    E --> H
+    H --> I[cli.py / web.py]
+```
 
 ## 🗂 目录结构
 

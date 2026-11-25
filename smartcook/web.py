@@ -9,7 +9,8 @@ import json
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse
 
-from . import agent, db as dbmod, llm, recipes
+from . import agent, llm, recipes
+from . import db as dbmod
 
 # 冷蓝为主 + 单一暖橙点缀(契合项目审美:清爽、圆润、温柔)。
 PAGE = """<!doctype html>

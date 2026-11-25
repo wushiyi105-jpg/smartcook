@@ -97,7 +97,7 @@ def suggest(ingredients_text: str, db) -> dict:
     dishes = []
     for s in top:
         if s["ratio"] >= 1.0:
-            reason = f"食材齐全,可直接开做"
+            reason = "食材齐全,可直接开做"
         else:
             reason = f"已有 {len(s['present'])}/{len(s['present'])+len(s['missing'])} 样主料,缺 {('、'.join(s['missing']) or '—')}"
         dishes.append({

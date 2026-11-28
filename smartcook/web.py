@@ -18,7 +18,7 @@ PAGE = """<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>食光 · 智能菜谱 Agent</title>
+<title>食光 · 用现有食材做一顿饭</title>
 <style>
   :root {
     --bg:#f4f7fb; --card:#ffffff; --ink:#1f2937; --muted:#6b7280;
@@ -66,14 +66,69 @@ PAGE = """<!doctype html>
   .spin { display:inline-block; width:16px; height:16px; border:2px solid #fff;
           border-top-color:transparent; border-radius:50%; animation:sp .7s linear infinite; }
   @keyframes sp { to { transform:rotate(360deg); } }
+
+h1{font-size:clamp(31px,5vw,39px);line-height:1.26}
+.prod{display:block;font-size:11px;line-height:1.4;letter-spacing:.18em;font-weight:650;margin-bottom:8px;opacity:.72}
+.lede,.sub{max-width:62ch;line-height:1.75}
+.route{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin:0 0 20px;border:1px solid var(--line);background:var(--line)}
+.route span{padding:11px 13px;background:var(--card);font-size:12px;line-height:1.5}
+.route b{display:block;font-size:10px;letter-spacing:.1em;margin-bottom:3px;opacity:.66}
+button{min-height:46px}
+input,select{min-height:44px}
+@media(max-width:680px){
+  .wrap{padding:20px 16px 56px}
+  .route{grid-template-columns:1fr}
+  h1{font-size:30px!important}
+  .row>div{min-width:100%!important}
+  button{width:100%}
+}
+
+body{background:#f7f1e5;color:#27231e;font-family:"PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{max-width:920px}
+header{padding:8px 0 20px;border-bottom:4px solid #d24b33;margin-bottom:22px}
+header h1{font-size:39px;line-height:1.25;letter-spacing:-.03em;font-weight:800}
+header p{color:#6d6155;font-size:14px}
+.card{background:#fffdf7;border:1px solid #e1d2bc;border-radius:8px;box-shadow:0 2px 0 #eadcc8}
+button{background:#d24b33;border-radius:8px;font-size:15px;font-weight:700;letter-spacing:.04em}
+button:hover{background:#bb3e28}
+textarea,input,select{background:#fffefb;border-color:#decdb6;border-radius:8px}
+textarea:focus,input:focus,select:focus{border-color:#d24b33;box-shadow:0 0 0 3px #f1d8cf}
+.item{border-left:4px solid #d24b33;padding-left:14px}
+h3{color:#a33c29;letter-spacing:.07em}
+
+
+/* palette-normalized */
+:root{--bg:#f7f1e5;--card:#fffdf7;--ink:#27231e;--text:#27231e;--dim:#6d6155;--line:#e1d2bc;--accent:#d24b33}
+
+/* polish-batch1 */
+button.ghost,button.secondary{background:transparent!important;color:#d24b33!important;border:1px solid #e1d2bc!important}
+
+/* mobile-32 */
+
+@media(max-width:760px){
+  main{grid-template-columns:1fr!important}
+  aside{border-right:0!important;border-bottom:1px solid #e1d2bc;width:auto!important}
+  section{padding:16px!important}
+  .row{flex-wrap:wrap!important}
+  .row>div{min-width:100%!important}
+  h1{font-size:30px!important}
+  .route{grid-template-columns:1fr!important}
+  button{min-height:48px}
+  pre{overflow-x:auto}
+}
+
+/* mobile-height */
+@media(max-width:760px){main{min-height:auto!important}aside{min-height:0!important}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <h1>食光 · 智能菜谱 Agent<span class="badge" id="status-badge">…</span></h1>
-    <p>告诉它你手边有什么,大模型帮你决定做什么、怎么做。</p>
+    <h1><span class="prod">食光</span>用现有食材，做一顿饭 <span class="badge" id="status-badge">…</span></h1>
+    <p class="lede">给下班后做两菜一汤的人：先说有啥、几人吃、还剩多久和过敏项，再把菜排成共用锅具和灶眼的顺序。</p>
   </header>
+  <div class="route" aria-label="任务步骤"><span><b>01</b>报食材和时间</span><span><b>02</b>排锅具与灶眼</span><span><b>03</b>照着步骤做完</span></div>
+
 
   <div class="tabs">
     <div class="tab active" data-tab="suggest">🍳 推荐</div>
